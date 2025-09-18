@@ -3,181 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immatech - Phone, Laptop & Electrical Repair</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Immanuel Tech - Your Gadget Experts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #28a745;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-color: #212529;
+            --white: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #e6e6e6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
         }
-        .container-padding {
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        header {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: top 0.3s;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517058863269-a1b7e3e2c079?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-attachment: fixed;
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.7), rgba(40, 167, 69, 0.7));
+            z-index: -1;
+        }
+
+        #hero .hero-content {
             padding: 2rem;
+            animation: slideInUp 1s ease-in-out;
         }
-        @media (min-width: 768px) {
-            .container-padding {
-                padding: 4rem;
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #services .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            z-index: -1;
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .service-card:hover::before {
+            transform: scale(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            margin: 1rem 0;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .service-card:hover h3, .service-card:hover p {
+            color: var(--white);
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        /* Call to Action Section */
+        #cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        #cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #cta h2::after {
+            background-color: var(--white);
+        }
+
+        #cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Section */
+        #contact .contact-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.7rem;
+            }
+
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
-<body class="antialiased leading-relaxed text-gray-200">
+<body>
 
-    <!-- Header & Navigation -->
-    <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-teal-400">
-                Immatech
-            </a>
-            <a href="#contact-us" class="py-2 px-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
-                Get a Quote
-            </a>
-        </nav>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 class="logo">Immanuel<span>Tech</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="relative bg-cover bg-center h-screen flex items-center justify-center text-center container-padding" style="background-image: url('https://placehold.co/1920x1080/1a202c/e6e6e6?text=Immatech');">
-            <div class="absolute inset-0 bg-gray-900 bg-opacity-75 backdrop-blur-sm"></div>
-            <div class="relative z-10 max-w-4xl mx-auto">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4 text-white">
-                    Your Tech, <span class="text-teal-400">Restored to Life.</span>
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Professional repair services for mobile phones, laptops, and a wide range of electrical appliances. We also offer the best accessories and gadgets.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#services" class="py-4 px-8 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                        Explore Our Services
-                    </a>
-                    <a href="#contact-us" class="py-4 px-8 bg-white hover:bg-gray-200 text-gray-900 font-bold rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                        Contact Us Today
-                    </a>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Expert Solutions for All Your Gadgets</h1>
+            <p>Your one-stop shop for phone, TV, and laptop repairs, sales, and accessories.</p>
+            <a href="#services" class="btn btn-secondary">Discover Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Phone Sales & Repair</h3>
+                    <p>From screen replacements to battery issues, we handle all types of phone repairs. We also offer a wide selection of new and used smartphones.</p>
+                </div>
+                <div class="service-card">
+                    <h3>TV Repairs</h3>
+                    <p>Don't throw away that TV! Our technicians are skilled in diagnosing and fixing issues with all major TV brands and models.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Laptop Repair Services</h3>
+                    <p>Whether it's a cracked screen, slow performance, or a dead motherboard, we provide fast and reliable laptop repair services.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Electricals & Accessories</h3>
+                    <p>Browse our extensive collection of electrical appliances and find the perfect accessories for your phone and other devices.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section id="services" class="container mx-auto container-padding">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white">
-                Our Services & Products
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service Card 1: Repair -->
-                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                    <div class="text-4xl text-teal-400 mb-4 text-center">
-                        📱💻
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-center text-white">Device Repair</h3>
-                    <p class="text-gray-400 text-center">
-                        Cracked screens, battery replacements, water damage, and more for all major phone and laptop brands.
-                    </p>
+    <!-- Call to Action -->
+    <section id="cta">
+        <div class="container">
+            <h2>Ready to Get Your Gadget Fixed?</h2>
+            <p>Contact us today and let our experts restore your devices to perfect condition.</p>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact & Location</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Reach Out to Us</h3>
+                    <p><strong>Phone:</strong> <a href="tel:+254748501240">+254 748 501 240</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+254799989328">+254 799 989 328</a></p>
+                    <p><strong>Location:</strong> Rubis Near Nairobi Academy</p>
                 </div>
-                <!-- Service Card 2: Accessories -->
-                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                    <div class="text-4xl text-teal-400 mb-4 text-center">
-                        🎧🔋
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-center text-white">Accessories</h3>
-                    <p class="text-gray-400 text-center">
-                        A huge selection of phone cases, chargers, headphones, and other essential gadgets to enhance your devices.
-                    </p>
-                </div>
-                <!-- Service Card 3: Electrical Appliances -->
-                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                    <div class="text-4xl text-teal-400 mb-4 text-center">
-                        💡🔌
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-center text-white">Appliance Care</h3>
-                    <p class="text-gray-400 text-center">
-                        Expert repair for a variety of small and large electrical appliances, from kitchen gadgets to home electronics.
-                    </p>
+                <div class="map-container">
+                    <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.751356392039!2d36.78652607424619!3d-1.3263025360098056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1437b0196253%3A0x6b77c38c823f6631!2sNairobi%20Academy!5e0!3m2!1sen!2ske!4v1699989328000!5m2!1sen!2ske" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-        </section>
-
-        <!-- Why Choose Us Section -->
-        <section class="container mx-auto container-padding">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white">
-                Why Choose Immatech?
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-6">
-                    <div class="bg-gray-800 rounded-xl p-6 shadow-md border border-gray-700">
-                        <h4 class="text-lg font-bold text-teal-400 flex items-center mb-2">
-                            <span class="mr-2 text-xl">✅</span> Expert Technicians
-                        </h4>
-                        <p class="text-sm text-gray-400">
-                            Our team is highly trained and certified to handle a wide range of technical issues with precision and care.
-                        </p>
-                    </div>
-                    <div class="bg-gray-800 rounded-xl p-6 shadow-md border border-gray-700">
-                        <h4 class="text-lg font-bold text-teal-400 flex items-center mb-2">
-                            <span class="mr-2 text-xl">🚀</span> Fast & Reliable Service
-                        </h4>
-                        <p class="text-sm text-gray-400">
-                            We work efficiently to get your devices back to you as quickly as possible, often offering same-day repairs.
-                        </p>
-                    </div>
-                    <div class="bg-gray-800 rounded-xl p-6 shadow-md border border-gray-700">
-                        <h4 class="text-lg font-bold text-teal-400 flex items-center mb-2">
-                            <span class="mr-2 text-xl">🛡️</span> Quality Guaranteed
-                        </h4>
-                        <p class="text-sm text-gray-400">
-                            We use only high-quality replacement parts and stand by our work with a comprehensive service warranty.
-                        </p>
-                    </div>
-                </div>
-                <div class="hidden md:flex justify-center items-center">
-                    <img src="https://placehold.co/500x350/1f2937/d1d5db?text=Happy+Customer" alt="Happy customer with repaired devices" class="rounded-2xl shadow-lg w-full max-w-md">
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action Section -->
-        <section id="contact-us" class="bg-gray-900 py-16">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">
-                    Need a Repair? Get a Quote Today!
-                </h2>
-                <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
-                    Fill out the form below or give us a call to get a free, no-obligation quote for your repair needs.
-                </p>
-                <a href="#contact-us" class="inline-block py-4 px-10 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full text-lg shadow-xl transition-all duration-300 transform hover:scale-105">
-                    Contact Immatech
-                </a>
-            </div>
-        </section>
-
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 py-8">
-        <div class="container mx-auto px-6 text-center text-gray-400">
-            <p>&copy; 2024 Immatech. All rights reserved.</p>
-            <p>
-                123 Tech Avenue, Innovation City | 
-                <a href="tel:+1234567890" class="hover:text-teal-400 transition-colors">
-                    (123) 456-7890
-                </a> | 
-                <a href="mailto:info@imatech.com" class="hover:text-teal-400 transition-colors">
-                    info@imatech.com
-                </a>
-            </p>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Immanuel Tech. All Rights Reserved.</p>
         </div>
     </footer>
-    
-    <!-- Smooth scrolling JavaScript -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+
 </body>
 </html>
